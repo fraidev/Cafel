@@ -26,11 +26,9 @@ namespace Cafel.WebApi
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var Felipe = new User("Felipe", "felipe", "felipe",  );
+                    var Felipe = new User("Felipe", "felipe", "felipe", new DateTime(1997,3, 07) );
                     
-                    
-                    session.SaveOrUpdate(barginBasin);
-                    session.SaveOrUpdate(superMart);
+                    session.SaveOrUpdate(Felipe);
 
                     transaction.Commit();
                 }
