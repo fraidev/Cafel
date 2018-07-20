@@ -13,7 +13,7 @@ namespace Cafel.WebApi.Domain
         public DateTime AccountCreated { get; set; }
         public List<Content> Content {get; set; }
 
-        public void User(string name, string username, string passworld, DateTime birthDate)
+        public User(string name, string username, string passworld, DateTime birthDate)
         {
             Id = new Guid();
             Name = name;
