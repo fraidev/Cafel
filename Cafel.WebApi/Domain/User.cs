@@ -5,13 +5,13 @@ namespace Cafel.WebApi.Domain
 {
     public class User
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Username { get; set; }
-        public string Passworld { get; set; }
-        public DateTime BirthDate { get; set; }
-        public DateTime AccountCreated { get; set; }
-        public List<Content> Content {get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Username { get; set; }
+        public virtual string Passworld { get; set; }
+        public virtual DateTime BirthDate { get; set; }
+        public virtual DateTime AccountCreated { get; set; }
+        public virtual List<Content> Content {get; set; }
 
         public User(string name, string username, string passworld, DateTime birthDate)
         {

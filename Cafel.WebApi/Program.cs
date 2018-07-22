@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NHibernate;
+using NHibernate.Tool.hbm2ddl;
 
 namespace Cafel.WebApi
 {
@@ -38,12 +39,15 @@ namespace Cafel.WebApi
         private static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
-                .Database(
-                    SQLiteConfiguration.Standard
-                        .UsingFile("firstProject.db")
-                )
-                .Mappings(m =>
-                    m.FluentMappings.AddFromAssemblyOf<Program>())
+                .Database(MsSqlConfiguration.MsSql2012
+                    .ConnectionString("Data Source=.;Initial Catalog=NHibernateDemo;Integrated Security=SSPI;")
+                    .ShowSql())
+
+                .Mappings(m => m.FluentMappings
+                .AddFromAssemblyOf<Program>())
+                .ExposeConfiguration(cfg => new SchemaExport(cfg)
+                    .Create(true, true))
+         
                 .BuildSessionFactory();
         }
 

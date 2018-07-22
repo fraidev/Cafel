@@ -4,9 +4,9 @@ namespace Cafel.WebApi.Domain
 {
     public class Content
     {
-        public Guid Id { get; set; }
-        public string Text { get; set; }
-        public DateTime Date { get; set; }
-        public int LikeCount {get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual string Text { get; set; }
+        public virtual DateTime Date { get; set; }
+        public virtual int LikeCount {get; set; }
     }
 }
