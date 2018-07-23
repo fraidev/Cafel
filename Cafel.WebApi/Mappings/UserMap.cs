@@ -15,8 +15,8 @@ namespace Cafel.WebApi.Mappings
             Map(x => x.Username);
             Map(x => x.Passworld);
             Map(x => x.AccountCreated);
+            
             /*
-
             HasManyToMany(x => x.Content)
                 .Cascade.All()
                 .Inverse()

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 
+
 namespace Cafel.WebApi
 {
     public class Program
@@ -59,5 +60,7 @@ namespace Cafel.WebApi
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+        
     }
+    
 }
