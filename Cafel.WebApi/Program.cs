@@ -19,7 +19,6 @@ namespace Cafel.WebApi
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
 
             var sessionFactory = CreateSessionFactory();
 
@@ -27,26 +26,32 @@ namespace Cafel.WebApi
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var Felipe = new User("Felipe", "felipe", "felipe", new DateTime(1997,3, 07) );
+                    var felipe = new User("Felipe", "felipe", "felipe", new DateTime(1997,3, 07) );
                     
-                    session.SaveOrUpdate(Felipe);
+                    session.SaveOrUpdate(felipe);
 
                     transaction.Commit();
+                    
+                    Console.WriteLine("User Created: " + felipe.Name + "\t");
                 }
             }
+            
+            
+            CreateWebHostBuilder(args).Build().Run();
         }
         
         private static ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
-                    .ConnectionString("Data Source=.;Initial Catalog=NHibernateDemo;Integrated Security=SSPI;")
+                    .ConnectionString("Data Source=.;Initial Catalog=CafelDB;Integrated Security=SSPI;")
                     .ShowSql())
 
                 .Mappings(m => m.FluentMappings
+                        
                 .AddFromAssemblyOf<Program>())
                 .ExposeConfiguration(cfg => new SchemaExport(cfg)
-                    .Create(true, true))
+                .Create(true, true))
          
                 .BuildSessionFactory();
         }
