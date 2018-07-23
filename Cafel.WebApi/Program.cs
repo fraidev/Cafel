@@ -21,7 +21,7 @@ namespace Cafel.WebApi
         public static void Main(string[] args)
         {
 
-            var sessionFactory = CreateSessionFactory();
+            var sessionFactory = NhibernateHelper.CreateSessionFactory();
 
             using (var session = sessionFactory.OpenSession())
             {
@@ -37,24 +37,7 @@ namespace Cafel.WebApi
                 }
             }
             
-            
             CreateWebHostBuilder(args).Build().Run();
-        }
-        
-        private static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012
-                    .ConnectionString("Data Source=.;Initial Catalog=CafelDB;Integrated Security=SSPI;")
-                    .ShowSql())
-
-                .Mappings(m => m.FluentMappings
-                        
-                .AddFromAssemblyOf<Program>())
-                .ExposeConfiguration(cfg => new SchemaExport(cfg)
-                .Create(true, true))
-         
-                .BuildSessionFactory();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
